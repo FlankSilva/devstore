@@ -1,29 +1,37 @@
+import { ComponentProps } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { twMerge } from 'tailwind-merge'
 
-type CardProductProps = {
-  colSpan?: number
-  rowSpan?: number
+type CardProductProps = ComponentProps<'a'> & {
   link: string
   img: string
 }
 
-export function CardProduct({ img, link, colSpan, rowSpan }: CardProductProps) {
+export function CardProduct({
+  className,
+  img,
+  link,
+  ...rest
+}: CardProductProps) {
   return (
     <Link
       href={link}
-      className={`
-          group 
-          relative 
-          col-span-${colSpan}
-          row-span-${rowSpan}
-          rounded-lg 
-          bg-zinc-900
-          overflow-hidden
-          flex justify-center
-          items-center
-
-        `}
+      className={twMerge(
+        `
+        group 
+        relative 
+        rounded-lg 
+        bg-zinc-900
+        overflow-hidden
+        flex justify-center
+        items-center
+        md:items-center
+      `,
+        className,
+      )}
+      {...rest}
     >
       <Image
         src={img}
