@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { api } from '@/data/api'
 import { ProductProps, SearchProps } from '@/data/types/product'
 import { PriceFormatted } from '@/utils/formattedPrice'
+import { Suspense } from 'react'
 
 async function searchProducts(query: string): Promise<ProductProps[]> {
   const response = await api(`/products/search?q=${query}`, {
@@ -27,7 +28,10 @@ export default async function Search({ searchParams }: SearchProps) {
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm">
-        Resultados para: <span className="font-semibold">{query}</span>
+        Resultados para:{' '}
+        <span className="font-semibold">
+          <Suspense>{query}</Suspense>
+        </span>
       </p>
 
       <div className="grid grid-cols-3 gap-6">

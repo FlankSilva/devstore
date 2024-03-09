@@ -20,8 +20,6 @@ async function getFeaturedProducts(): Promise<ProductProps[]> {
 export default async function Home() {
   const [highlightsProducts, ...outherProducts] = await getFeaturedProducts()
 
-  console.log(highlightsProducts)
-
   return (
     <section className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
       <CardProduct
