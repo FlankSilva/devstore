@@ -1,8 +1,7 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-  STRIP_PUBLIC_KEY: z.string(),
-  STRIP_SECRET_KEY: z.string(),
+  NEXT_PUBLIC_API_BASE_URL: z.string().url(),
 })
 
 const parsedEnv = envSchema.safeParse(process.env)
